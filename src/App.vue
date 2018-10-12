@@ -2,11 +2,7 @@
   <div
     id="app"
     class="container-fluid">
-    <div class="row">
-      <div class="col-12 col-md-6 mx-auto">
-        <MainComponent />
-      </div>
-    </div>
+    <MainComponent/>
   </div>
 </template>
 
