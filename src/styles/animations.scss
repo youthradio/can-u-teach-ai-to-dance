@@ -1,5 +1,10 @@
+.pulse-left {
+    animation-duration: 0.5s;
+    animation-name: pulse;
+    animation-direction: alternate-reverse;
+    animation-iteration-count: infinite;
+}
 .pulse {
-    cursor: pointer;
     animation-duration: 0.5s;
     animation-name: pulse;
     animation-direction: alternate;
