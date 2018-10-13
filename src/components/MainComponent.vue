@@ -1,15 +1,16 @@
 <template>
   <div class="row">
     <div class="col">
-      <template v-if="!isLoading">
-        {{ startData }}
-      </template>
-      <template v-else>
-        Loading...
-      </template>
-
-      <AlbumInfo/>
-      <RatingSlider/>
+      <div class="text-center my-2">
+        <h1>How Dancible is X by Y</h1>
+      </div>
+      <AlbumInfo 
+        :song-data="currentSongData" 
+        class="my-4" />
+      <div class="text-center my-4">
+        <h2>Rate the song here</h2>
+      </div>
+      <RatingSlider class="my-4"/>
       <div class="float-right">
         <div class="d-flex align-items-center pointer">
           <div>
@@ -41,14 +42,21 @@ export default {
   ],
   data() {
     return {
-      startData: "HELLO"
+      currentSong: 0,
     }
   },
   computed: {
-
+    spotifyData(){
+      return this.$store.state.spotifyData;
+    },
+    currentSongData(){
+      return this.spotifyData[this.currentSong];
+    }
   },
   methods: {
+    nextQuestion(){
 
+    }
   },
 }
 </script>

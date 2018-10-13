@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <img 
-      class="img-fluid" 
-      src="data/Frank_Ocean.jpg">
+  <div class="text-center">
+    <img
+      :src="`data/${songData.albumImageFile}`"
+      class="img-fluid">
   </div>
 </template>
 
@@ -14,6 +14,13 @@ export default {
   mixins: [
     CommonUtils,
   ],
+  props: {
+    songData: {
+      type: Object,
+      default: null,
+      require: true,
+    }
+  },
   data() {
     return {
       startData: "HELLO"
