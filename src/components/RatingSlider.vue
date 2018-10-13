@@ -14,13 +14,21 @@
         <span>9</span>
         <span>10</span>
       </div>
-      <input
-        v-model="sliderValue"
-        type="range"
-        min="0"
-        step="0.01"
-        max="10"
-        class="slider">
+      <div class="position-relative">
+        <input
+          v-model="sliderValue"
+          type="range"
+          min="0"
+          step="0.01"
+          max="10"
+          class="slider"
+          @mousedown="click()"
+          @touchstart="click()">
+          <div v-if="!hasCliked" class="thumb-tooltip">
+            <div class="icon-arrow-left pulse-left px-3"/>
+            <div class="icon-arrow-right pulse px-3"/>
+          </div>
+        </div>
     </div>
   </div>
 </template>
@@ -36,13 +44,20 @@ export default {
   data() {
     return {
       sliderValue: 4.94,
+      hasCliked: false,
     }
   },
   computed: {
 
   },
-  methods: {
+  mounted() {
+    //do something after mounting vue instance
 
+  },
+  methods: {
+    click(){
+      this.hasCliked = true
+    }
   },
 }
 </script>
@@ -53,6 +68,7 @@ export default {
 
 .slider{
   width: 100%;
+  z-index: 1000;
 }
 .numbers{
   font: 900 1.5rem/1.05 "Days Sans Black", sans-serif;
@@ -75,5 +91,12 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 300px;
   height: 4px;
   background: $dark;
+}
+.thumb-tooltip {
+  z-index: 0;
+  display: flex;
+  position: absolute;
+  left: 43%;
+  top: 90%;
 }
 </style>

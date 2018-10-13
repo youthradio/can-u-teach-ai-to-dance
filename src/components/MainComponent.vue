@@ -4,15 +4,17 @@
       <div class="text-center my-2">
         <h1>How Dancible is X by Y</h1>
       </div>
-      <AlbumInfo 
-        :song-data="currentSongData" 
+      <AlbumInfo
+        :song-data="currentSongData"
         class="my-4" />
       <div class="text-center my-4">
         <h2>Rate the song here</h2>
       </div>
       <RatingSlider class="my-4"/>
       <div class="float-right">
-        <div class="d-flex align-items-center pointer">
+        <div
+          v-if="hasVoted"
+          class="d-flex align-items-center pointer">
           <div>
             Next Song
           </div>
@@ -43,6 +45,7 @@ export default {
   data() {
     return {
       currentSong: 0,
+      hasVoted: false,
     }
   },
   computed: {
