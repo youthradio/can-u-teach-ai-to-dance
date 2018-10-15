@@ -14,7 +14,7 @@
         <span>9</span>
         <span>10</span>
       </div>
-      <div class="position-relative">
+      <div class="position-relative mt-1">
         <input
           v-model="sliderValue"
           type="range"
@@ -24,11 +24,13 @@
           class="slider"
           @mousedown="click()"
           @touchstart="click()">
-          <div v-if="!hasCliked" class="thumb-tooltip">
-            <div class="icon-arrow-left pulse-left px-3"/>
-            <div class="icon-arrow-right pulse px-3"/>
-          </div>
+        <div
+          v-if="!hasCliked"
+          class="thumb-tooltip">
+          <div class="icon-arrow-left pulse-left px-3"/>
+          <div class="icon-arrow-right pulse px-3"/>
         </div>
+      </div>
     </div>
   </div>
 </template>

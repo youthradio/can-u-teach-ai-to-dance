@@ -1,0 +1,21 @@
+@import "variables";
+$plyr-color-main: $sky-blue;
+$plyr-font-family: 'Assistant', sans-serif;
+
+$plyr-audio-controls-bg: #fff !default;
+$plyr-audio-control-color: $sky-blue !default;
+$plyr-audio-control-color-hover: #fff !default;
+$plyr-audio-control-bg-hover: $plyr-color-main !default;
+
+$plyr-control-icon-size: calc(3rem) !default;
+$plyr-control-spacing: 1.5rem !default;
+$plyr-control-padding: ($plyr-control-spacing * 0.5) !default;
+$plyr-control-radius: 5px !default;
+
+.plyr__control {
+  border: 2px $dark solid !important;
+  box-shadow: 3px 3px black;
+}
+
+$plyr-audio-controls-bg: none;
+@import "../../node_modules/plyr/src/sass/plyr";

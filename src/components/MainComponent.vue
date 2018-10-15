@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col">
+    <div class="col-12 col-md-6 mx-auto">
       <div class="text-center my-2">
         <h1>How Dancible is X by Y</h1>
       </div>
@@ -8,7 +8,7 @@
         :song-data="currentSongData"
         class="my-4" />
       <div class="text-center my-4">
-        <h2>Rate the song here</h2>
+        <h3>Listen to the song and rate it here</h3>
       </div>
       <RatingSlider class="my-4"/>
       <div class="float-right">
@@ -60,7 +60,8 @@ export default {
     nextQuestion(){
 
     }
-  },
+  }
+
 }
 </script>
 
