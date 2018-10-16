@@ -9,8 +9,10 @@
         </h1>
       </div>
       <template v-if="!seeResult">
-        <AlbumInfo
+        <TopPanel
           :song-data="currentSongData"
+          :user-rate="sliderValue"
+          :has-voted="hasVoted"
           class="my-4" />
         <div class="text-center my-4">
           <h3>Listen to the song and rate it here</h3>
@@ -45,14 +47,14 @@
 <script>
 import CommonUtils from '../mixins/CommonUtils'
 import RatingSlider from './RatingSlider.vue'
-import AlbumInfo from './AlbumInfo.vue'
+import TopPanel from './TopPanel.vue'
 import ResultPanel from './ResultPanel.vue'
 
 export default {
   name: 'MainComponent',
   components: {
     RatingSlider,
-    AlbumInfo,
+    TopPanel,
     ResultPanel
   },
   mixins: [

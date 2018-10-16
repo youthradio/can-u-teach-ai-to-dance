@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="slidecontainer">
-      <div class="d-flex no-wrap numbers">
+      <div class="d-flex no-wrap justify-content-between numbers">
         <div
           v-for="num in values"
           :key="num"
@@ -64,7 +64,7 @@ export default {
       this.hasCliked = true;
     },
     numberStyle (value){
-      const v = 1 + 2*Math.exp(-Math.abs(this.sliderValue - value))
+      const v = 1 + 2*Math.exp(-2*Math.abs(this.sliderValue - value))
       return {
         transform: `scale(${v})`,
       }
@@ -85,10 +85,10 @@ export default {
   font: 900 1rem/1.05 "Days Sans Black", sans-serif;
   letter-spacing: 0.64px;
   text-transform: uppercase;
-  div {
-    width: 100%;
-    text-align: center;
-  }
+  // div {
+  //   width: 100%;
+  //   text-align: center;
+  // }
 }
 input[type=range] {
   -webkit-appearance: none;

@@ -1,6 +1,6 @@
 <template>
   <div
-    :style="backImage"
+    :style="!hasVoted? backImage: backImageGif(userRate)"
     class="text-center box">
     <vue-plyr
       ref="audioPlayer"
@@ -20,7 +20,7 @@ import CommonUtils from '../mixins/CommonUtils'
 import VuePlyr from './VuePlyr.vue'
 
 export default {
-  name: 'AlbumInfo',
+  name: 'TopPanel',
   components: {
     VuePlyr
   },
@@ -31,6 +31,16 @@ export default {
     songData: {
       type: Object,
       default: null,
+      require: true,
+    },
+    userRate: {
+      type: Number,
+      default: 0,
+      require: true,
+    },
+    hasVoted: {
+      type: Boolean,
+      default: false,
       require: true,
     }
   },
@@ -77,7 +87,11 @@ export default {
     }
   },
   methods: {
-
+    backImageGif(score) {
+      return {
+        "background-image": `url(data/gifs/${Math.floor(score)}.gif)`
+      };
+    },
   },
 
 }

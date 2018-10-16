@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-6">
       <div
-        :style="backImage"
+        :style="backImageGif(userRate)"
         class="text-center box"/>
       <div class="d-flex justify-content-between numbers p-2">
         <span>You</span>
@@ -11,7 +11,7 @@
     </div>
     <div class="col-6">
       <div
-        :style="backImage"
+        :style="backImageGif(10*songData.danceability)"
         class="text-center box"/>
       <div class="d-flex justify-content-between numbers p-2">
         <span>Spotify</span>
@@ -59,7 +59,11 @@ export default {
     },
   },
   methods: {
-
+    backImageGif(score) {
+      return {
+        "background-image": `url(data/gifs/${Math.floor(score)}.gif)`
+      };
+    },
   },
 }
 </script>
