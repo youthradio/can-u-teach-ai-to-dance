@@ -8,7 +8,7 @@
           :style="numberStyle(num)"
           v-html="num"/>
       </div>
-      <div class="position-relative mt-3 text-center h-100">
+      <div class="position-relative mt-3 text-center">
         <input
           v-model="sliderValue"
           type="range"
@@ -23,6 +23,10 @@
           class="thumb-tooltip">
           <div class="icon-arrow-right pulse-long"/>
         </div>
+      </div>
+      <div class="d-flex justify-content-between mt-3">
+        <div>Hard to Dance</div>
+        <div>Easy to Dance</div>
       </div>
     </div>
   </div>

@@ -8,31 +8,35 @@
           <span class="song-title">{{ currentSongData.artistName }}</span>
         </h1>
       </div>
-      <AlbumInfo
-        :song-data="currentSongData"
-        class="my-4" />
-      <div class="text-center my-4">
-        <h3>Listen to the song and rate it here</h3>
-      </div>
-      <RatingSlider 
-        class="my-4" 
-        @hasChanged="sliderHasChanged"/>
-      <ResultPanel
-        :user-rate="sliderValue"
-        :song-data="currentSongData"
-        class="my-4" />
-      <div class="float-right">
-        <div
-          v-if="hasVoted"
-          class="d-flex align-items-center pointer">
-          <div>
-            Compare with what's spotify think?
-          </div>
-          <div
-            class="icon-arrow-right arrow pulse ml-3"
-            @click="nextQuestion" />
+      <template v-if="!seeResult">
+        <AlbumInfo
+          :song-data="currentSongData"
+          class="my-4" />
+        <div class="text-center my-4">
+          <h3>Listen to the song and rate it here</h3>
         </div>
-      </div>
+        <RatingSlider
+          class="my-4"
+          @hasChanged="sliderHasChanged" />
+      </template>
+      <template v-else>
+        <ResultPanel
+          :user-rate="sliderValue"
+          :song-data="currentSongData"
+          class="my-4" />
+      </template>
+      <template v-if="hasVoted">
+        <div class="float-right">
+          <div
+            class="d-flex align-items-center pointer"
+            @click="comparePage">
+            <div>
+              Compare with what's spotify think?
+            </div>
+            <div class="icon-arrow-right arrow pulse ml-3"/>
+          </div>
+        </div>
+      </template>
 
     </div>
   </div>
@@ -59,13 +63,14 @@ export default {
       currentSong: 0,
       hasVoted: false,
       sliderValue: 0,
+      seeResult: false,
     }
   },
   computed: {
-    spotifyData(){
+    spotifyData() {
       return this.$store.state.spotifyData;
     },
-    currentSongData(){
+    currentSongData() {
       return this.spotifyData[this.currentSong];
     }
   },
@@ -74,11 +79,12 @@ export default {
       this.sliderValue = Number(value);
       this.hasVoted = true;
     },
-    nextQuestion(){
+    nextQuestion() {
 
     },
-    compareResult(){
-
+    comparePage() {
+      this.seeResult = true;
+      console.log("shshs")
     }
   }
 
@@ -93,8 +99,8 @@ export default {
     color: $sky-blue;
     font-size: 2rem;
 }
-.song-title{
-  font-weight: 800;
-  color: $green;
+.song-title {
+    font-weight: 800;
+    color: $green;
 }
 </style>
