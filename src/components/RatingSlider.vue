@@ -19,7 +19,7 @@
           @mousedown="click()"
           @touchstart="click()">
         <div
-          v-if="!hasCliked"
+          v-if="!hasCliked && showHelper"
           class="thumb-tooltip">
           <div class="icon-arrow-right pulse-long"/>
         </div>
@@ -40,6 +40,13 @@ export default {
   mixins: [
     CommonUtils,
   ],
+  props: {
+    showHelper: {
+      type: Boolean,
+      default: true,
+      require: true,
+    },
+  },
   data() {
     return {
       sliderValue: 0.0,

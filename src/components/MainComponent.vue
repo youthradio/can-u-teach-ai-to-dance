@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-12 col-md-6 mx-auto">
       <div class="text-center my-2">
-        <h1>How Dancible is
+        <h2>How Dancible is
           <span class="song-title">{{ currentSongData.songName }}</span>
           by
           <span class="song-title">{{ currentSongData.artistName }}</span>
-        </h1>
+        </h2>
       </div>
       <template v-if="!seeResult">
         <TopPanel
@@ -18,6 +18,7 @@
           <h3>Listen to the song and rate it here</h3>
         </div>
         <RatingSlider
+          :show-helper="showHelper"
           class="my-4"
           @hasChanged="sliderHasChanged" />
       </template>
@@ -31,10 +32,16 @@
         <div class="float-right">
           <div
             class="d-flex align-items-center pointer"
-            @click="comparePage">
-            <div>
+            @click="nextButton">
+            <template v-if="pageState === 0">
               Compare with what's spotify think?
-            </div>
+            </template>
+            <template v-else-if="pageState === 1">
+              Next Song
+            </template>
+            <template v-else-if="pageState === 2">
+              See Overall Results
+            </template>
             <div class="icon-arrow-right arrow pulse ml-3"/>
           </div>
         </div>
@@ -62,10 +69,13 @@ export default {
   ],
   data() {
     return {
+      pageState: 0,
       currentSong: 0,
       hasVoted: false,
       sliderValue: 0,
       seeResult: false,
+      userRates: [],
+      showHelper: true,
     }
   },
   computed: {
@@ -80,16 +90,30 @@ export default {
     sliderHasChanged(value) {
       this.sliderValue = Number(value);
       this.hasVoted = true;
+      this.showHelper = false;
     },
-    nextQuestion() {
-
+    nextButton() {
+      switch(this.pageState){
+        case 0:
+          this.seeResult = true;
+          this.userRates.push(this.sliderValue);
+          this.pageState = 1
+          if(this.currentSong >= this.spotifyData.length - 1){
+            this.pageState = 2
+          }
+          break;
+        case 1:
+          this.seeResult = false;
+          this.hasVoted = false
+          this.currentSong++;
+          this.pageState = 0
+          break;
+        case 2:
+          alert("OVERALL");
+          break;
+      }
     },
-    comparePage() {
-      this.seeResult = true;
-      console.log("shshs")
-    }
   }
-
 }
 </script>
 
