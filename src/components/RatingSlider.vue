@@ -1,20 +1,14 @@
 <template>
   <div>
     <div class="slidecontainer">
-      <div class="d-flex justify-content-between numbers">
-        <span>0</span>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span>5</span>
-        <span>6</span>
-        <span>7</span>
-        <span>8</span>
-        <span>9</span>
-        <span>10</span>
+      <div class="d-flex no-wrap numbers justify-content-between">
+        <div
+          v-for="num in values"
+          :key="num"
+          :style="numberStyle(num)"
+          v-html="num"/>
       </div>
-      <div class="position-relative mt-1">
+      <div class="position-relative mt-3 text-center">
         <input
           v-model="sliderValue"
           type="range"
@@ -47,10 +41,16 @@ export default {
     return {
       sliderValue: 4.94,
       hasCliked: false,
+      values: [0,1,2,3,4,5,6,7,8,9,10]
     }
   },
   computed: {
 
+  },
+  watch: {
+    sliderValue(){
+      this.$emit('hasChanged', this.sliderValue);
+    }
   },
   mounted() {
     //do something after mounting vue instance
@@ -58,7 +58,14 @@ export default {
   },
   methods: {
     click(){
-      this.hasCliked = true
+      this.hasCliked = true;
+    },
+    numberStyle (value){
+      const v = Math.exp(1/(1 + Math.abs(this.sliderValue - value)))/Math.exp(1/11)
+      return {
+        transform: `scale(${v})`,
+        opacity: `${v/2}`,
+      }
     }
   },
 }
@@ -72,7 +79,7 @@ export default {
   width: 100%;
   z-index: 1000;
 }
-.numbers{
+.numbers {
   font: 900 1.5rem/1.05 "Days Sans Black", sans-serif;
   letter-spacing: 0.64px;
   text-transform: uppercase;
