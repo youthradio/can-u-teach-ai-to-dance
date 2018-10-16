@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="slidecontainer">
-      <div class="d-flex no-wrap numbers justify-content-between">
+      <div class="d-flex no-wrap numbers">
         <div
           v-for="num in values"
           :key="num"
           :style="numberStyle(num)"
           v-html="num"/>
       </div>
-      <div class="position-relative mt-3 text-center">
+      <div class="position-relative mt-3 text-center h-100">
         <input
           v-model="sliderValue"
           type="range"
@@ -21,8 +21,7 @@
         <div
           v-if="!hasCliked"
           class="thumb-tooltip">
-          <div class="icon-arrow-left pulse-left px-3"/>
-          <div class="icon-arrow-right pulse px-3"/>
+          <div class="icon-arrow-right pulse-long"/>
         </div>
       </div>
     </div>
@@ -39,7 +38,7 @@ export default {
   ],
   data() {
     return {
-      sliderValue: 4.94,
+      sliderValue: 0.0,
       hasCliked: false,
       values: [0,1,2,3,4,5,6,7,8,9,10]
     }
@@ -61,10 +60,9 @@ export default {
       this.hasCliked = true;
     },
     numberStyle (value){
-      const v = Math.exp(1/(1 + Math.abs(this.sliderValue - value)))/Math.exp(1/11)
+      const v = 1 + 2*Math.exp(-Math.abs(this.sliderValue - value))
       return {
         transform: `scale(${v})`,
-        opacity: `${v/2}`,
       }
     }
   },
@@ -80,9 +78,13 @@ export default {
   z-index: 1000;
 }
 .numbers {
-  font: 900 1.5rem/1.05 "Days Sans Black", sans-serif;
+  font: 900 1rem/1.05 "Days Sans Black", sans-serif;
   letter-spacing: 0.64px;
   text-transform: uppercase;
+  div {
+    width: 100%;
+    text-align: center;
+  }
 }
 input[type=range] {
   -webkit-appearance: none;
@@ -103,9 +105,11 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 .thumb-tooltip {
   z-index: 0;
+  font-size: 2rem;
   display: flex;
   position: absolute;
-  left: 43%;
-  top: 90%;
+  top: -1px;
+  left: 5%;
+  color: $red;
 }
 </style>

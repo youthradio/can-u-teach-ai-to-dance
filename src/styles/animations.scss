@@ -10,9 +10,23 @@
     animation-direction: alternate;
     animation-iteration-count: infinite;
 }
+.pulse-long {
+    animation-duration: 1.0s;
+    animation-name: pulse-long;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
 @keyframes pulse {
     from {
         transform: translateX(-5px);
+    }
+    to {
+        transform: translateX(0px);
+    }
+}
+@keyframes pulse-long {
+    from {
+        transform: translateX(100px);
     }
     to {
         transform: translateX(0px);
