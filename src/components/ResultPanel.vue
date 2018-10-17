@@ -87,11 +87,4 @@ export default {
   padding-bottom: 100%;
   position: relative;
 }
-.numbers {
-  font: 900 1.1rem/1.05 "Days Sans Black", sans-serif;
-  letter-spacing: 0.64px;
-  text-transform: uppercase;
-  color: $white;
-  background-color: $dusk;
-}
 </style>

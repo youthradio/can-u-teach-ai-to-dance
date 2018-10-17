@@ -2,6 +2,9 @@
   <div
     :style="!hasVoted? backImage: backImageGif(userRate)"
     class="text-center box">
+      <div class="progress-number numbers">
+        <h3>{{progress}}</h3>
+      </div>
     <vue-plyr
       ref="audioPlayer"
       :options="playerOptions"
@@ -41,6 +44,11 @@ export default {
     hasVoted: {
       type: Boolean,
       default: false,
+      require: true,
+    },
+    progress: {
+      type: String,
+      default: '0/0',
       require: true,
     }
   },
@@ -108,6 +116,13 @@ export default {
   position: absolute;
   bottom: 0px;
   left: 0px;
+}
+.progress-number {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  color: $white;
+  text-shadow: 1px 1px 1px $dark;
 }
 .box {
   background-repeat: no-repeat;

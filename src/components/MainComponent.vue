@@ -10,6 +10,7 @@
       </div>
       <template v-if="!seeResult">
         <TopPanel
+          :progress="getProgress"
           :song-data="currentSongData"
           :user-rate="sliderValue"
           :has-voted="hasVoted"
@@ -84,6 +85,9 @@ export default {
     },
     currentSongData() {
       return this.spotifyData[this.currentSong];
+    },
+    getProgress(){
+      return `${this.currentSong + 1}/${this.spotifyData.length}`;
     }
   },
   methods: {

@@ -88,15 +88,6 @@ export default {
   width: 100%;
   z-index: 1000;
 }
-.numbers {
-  font: 900 1rem/1.05 "Days Sans Black", sans-serif;
-  letter-spacing: 0.64px;
-  text-transform: uppercase;
-  // div {
-  //   width: 100%;
-  //   text-align: center;
-  // }
-}
 input[type=range] {
   -webkit-appearance: none;
   background: transparent;
