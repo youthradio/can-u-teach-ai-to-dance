@@ -26,11 +26,6 @@ import CommonUtils from '../mixins/CommonUtils'
 
 export default {
   name: 'ResultPanel',
-  filters: {
-    formatNumber(number) {
-      return (number*10).toFixed(2);
-    }
-  },
   mixins: [
     CommonUtils,
   ],

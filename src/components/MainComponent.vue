@@ -1,14 +1,14 @@
 <template>
   <div class="row">
     <div class="col-12 col-md-6 mx-auto">
-      <div class="text-center my-2">
+      <div v-if="pageState < 3" class="text-center my-2">
         <h2>How Dancible is
           <span class="song-title">{{ currentSongData.songName }}</span>
           by
           <span class="song-title">{{ currentSongData.artistName }}</span>
         </h2>
       </div>
-      <template v-if="!seeResult">
+      <template v-if="pageState === 0">
         <TopPanel
           :progress="getProgress"
           :song-data="currentSongData"
@@ -16,38 +16,60 @@
           :has-voted="hasVoted"
           class="my-4" />
         <div class="text-center my-4">
-          <h3>Listen to the song and rate it here</h3>
+          <h4>Listen to the song and rate it here</h4>
         </div>
         <RatingSlider
           :show-helper="showHelper"
           class="my-4"
           @hasChanged="sliderHasChanged" />
+        <template v-if="hasVoted">
+          <div class="float-right">
+            <div
+              class="d-flex align-items-center pointer"
+              @click="nextButton">
+              Compare with what's spotify think?
+              <div class="icon-arrow-right arrow pulse ml-3"/>
+            </div>
+          </div>
+        </template>
       </template>
-      <template v-else>
+      <template v-else-if="pageState === 1 || pageState === 2">
         <ResultPanel
           :user-rate="sliderValue"
           :song-data="currentSongData"
           class="my-4" />
-      </template>
-      <template v-if="hasVoted">
-        <div class="float-right">
+        <div
+          v-if="pageState === 1"
+          class="float-right">
           <div
             class="d-flex align-items-center pointer"
             @click="nextButton">
-            <template v-if="pageState === 0">
-              Compare with what's spotify think?
-            </template>
-            <template v-else-if="pageState === 1">
-              Next Song
-            </template>
-            <template v-else-if="pageState === 2">
-              See Overall Results
-            </template>
+            Next Song
             <div class="icon-arrow-right arrow pulse ml-3"/>
           </div>
         </div>
+        <div
+          v-else
+          class="d-flex align-items-center justify-content-center">
+          <button
+            class="button-style text-uppercase font-weight-bold"
+            @click="nextButton">See Overall Results</button>
+        </div>
       </template>
-
+      <template v-else-if="pageState === 3">
+        <ResultSum
+          :user-rates="userRates"
+          :songs-data="spotifyData"
+          class="my-4" />
+        <div class="float-left">
+          <div
+            class="d-flex align-items-center pointer"
+            @click="nextButton">
+            <div class="icon-arrow-left arrow pulse-left ml-3"/>
+            Try Again
+          </div>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -57,12 +79,14 @@ import CommonUtils from '../mixins/CommonUtils'
 import RatingSlider from './RatingSlider.vue'
 import TopPanel from './TopPanel.vue'
 import ResultPanel from './ResultPanel.vue'
+import ResultSum from './ResultSum.vue'
 
 export default {
   name: 'MainComponent',
   components: {
     RatingSlider,
     TopPanel,
+    ResultSum,
     ResultPanel
   },
   mixins: [
@@ -74,7 +98,6 @@ export default {
       currentSong: 0,
       hasVoted: false,
       sliderValue: 0,
-      seeResult: false,
       userRates: [],
       showHelper: true,
     }
@@ -98,22 +121,26 @@ export default {
     },
     nextButton() {
       switch(this.pageState){
-        case 0:
-          this.seeResult = true;
+        case 0: //start
           this.userRates.push(this.sliderValue);
           this.pageState = 1
           if(this.currentSong >= this.spotifyData.length - 1){
             this.pageState = 2
           }
           break;
-        case 1:
-          this.seeResult = false;
+        case 1://compare
           this.hasVoted = false
           this.currentSong++;
           this.pageState = 0
           break;
-        case 2:
-          alert("OVERALL");
+        case 2://results
+          this.pageState = 3;
+          break;
+        case 3://results
+          this.pageState = 0;
+          this.currentSong = 0;
+          this.hasVoted = false;
+          this.userRates = [];
           break;
       }
     },
@@ -132,5 +159,20 @@ export default {
 .song-title {
     font-weight: 800;
     color: $green;
+}
+.button-style:hover {
+    color: #fff;
+    background-color: #00cec3;
+    box-shadow: 5px 5px #232323;
+}
+.button-style {
+    background-color: #fff;
+    border: 3px solid #2e2e2e;
+    border-radius: 10px;
+    padding: .25rem .5rem;
+    margin: 1rem;
+    font-size: 1.5rem !important;
+    font-weight: 600;
+    box-shadow: 0.5rem 0.5rem #00cec3;
 }
 </style>

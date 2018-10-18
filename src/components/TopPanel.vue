@@ -2,9 +2,9 @@
   <div
     :style="!hasVoted? backImage: backImageGif(userRate)"
     class="text-center box">
-      <div class="progress-number numbers">
-        <h3>{{progress}}</h3>
-      </div>
+    <div class="progress-number numbers">
+      <h3>{{ progress }}</h3>
+    </div>
     <vue-plyr
       ref="audioPlayer"
       :options="playerOptions"
