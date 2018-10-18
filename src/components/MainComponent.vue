@@ -1,12 +1,14 @@
 <template>
   <div class="row">
     <div class="col-12 col-md-6 mx-auto">
-      <div v-if="pageState < 3" class="text-center my-2">
-        <h2>How Dancible is
+      <div
+        v-if="pageState < 3"
+        class="text-center my-2">
+        <h3>How Dancible is
           <span class="song-title">{{ currentSongData.songName }}</span>
           by
           <span class="song-title">{{ currentSongData.artistName }}</span>
-        </h2>
+        </h3>
       </div>
       <template v-if="pageState === 0">
         <TopPanel

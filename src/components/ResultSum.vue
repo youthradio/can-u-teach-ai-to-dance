@@ -2,13 +2,20 @@
   <div class="row">
     <div class="col-12">
       <div class="text-center">
-        <h2>
+        <h3>
           <span class="song-title">{{ scorePage.title }}</span>
-        </h2>
+        </h3>
       </div>
-      <div
-        :style="backImage"
-        class="text-center box"/>
+      <div class="row">
+        <div class="col-12 mx-auto">
+          <div
+            :style="backImage"
+            class="text-center box"/>
+        </div>
+      </div>
+      <p>
+        {{ scorePage.description }}
+      </p>
       <table class="table">
         <thead>
           <tr>
@@ -27,7 +34,7 @@
               <strong>{{ song.artistName }}</strong>
             </td>
             <td>{{ song.danceability | formatNumber }}</td>
-            <td>{{ userRates[ind] }}</td>
+            <td>{{ userRates[ind]/10 | formatNumber }}</td>
           </tr>
         </tbody>
       </table>

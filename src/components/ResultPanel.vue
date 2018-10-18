@@ -5,7 +5,7 @@
         :style="backImageGif(userRate)"
         class="text-center box"/>
       <div class="d-flex justify-content-between numbers p-2">
-        <span>You</span>
+        <span class="no-bold">You</span>
         <span>{{ userRate }}</span>
       </div>
     </div>
@@ -14,7 +14,7 @@
         :style="backImageGif(10*songData.danceability)"
         class="text-center box"/>
       <div class="d-flex justify-content-between numbers p-2">
-        <span>Spotify</span>
+        <span class="no-bold">Spotify</span>
         <span>{{ songData.danceability | formatNumber }}</span>
       </div>
     </div>
@@ -74,6 +74,9 @@ export default {
   position: absolute;
   bottom: 0px;
   left: 0px;
+}
+.no-bold{
+  font-size: 0.8rem;
 }
 .box {
   background-repeat: no-repeat;
