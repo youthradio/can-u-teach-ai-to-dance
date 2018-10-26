@@ -77,8 +77,8 @@ export default {
           // 'duration', // The full duration of the media
           // 'mute', // Toggle mute
           // 'volume', // Volume control
-          'pip', // Picture-in-picture (currently Safari only)
-          'airplay' // Airplay (currently Safari only)
+          // 'pip', // Picture-in-picture (currently Safari only)
+          // 'airplay' // Airplay (currently Safari only)
           // 'settings' // Settings menu
         ]
       }

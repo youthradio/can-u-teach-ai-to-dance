@@ -22,7 +22,7 @@
         </div>
         <RatingSlider
           :show-helper="showHelper"
-          class="my-4"
+          class="my-4 mx-3"
           @hasChanged="sliderHasChanged" />
         <template v-if="hasVoted">
           <div class="float-right">
