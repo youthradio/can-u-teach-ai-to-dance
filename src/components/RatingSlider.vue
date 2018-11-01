@@ -94,15 +94,58 @@ input[type=range] {
 }
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
+  background: transparent;
+}
+//webkit
+input[type=range]::-webkit-slider-thumb {
+  cursor: pointer;
+  -webkit-appearance: none;
   background: $sky-blue;
   height: 2.5rem;
   width: 0.8rem;
   margin-top: calc(-2.5rem/2);
   border-radius: 99px;
 }
+//firefox
+input[type=range]::-moz-range-thumb {
+  cursor: pointer;
+  background: $sky-blue;
+  height: 2.5rem;
+  width: 0.8rem;
+  margin-top: calc(-2.5rem/2);
+  border-radius: 99px;
+}
+//ie
+input[type=range]::-ms-thumb {
+  cursor: pointer;
+  background: $sky-blue;
+  height: 2.5rem;
+  width: 0.8rem;
+  margin-top: calc(-2.5rem/2);
+  border-radius: 99px;
+}
+
 input[type=range]::-webkit-slider-runnable-track {
-  width: 300px;
-  height: 4px;
+  height: 5px;
+  background: $dark;
+  cursor: pointer;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: $dark;
+}
+
+input[type=range]::-moz-range-track {
+  height: 5px;
+  background: $dark;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+  height: 5px;
+  background: $dark;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-upper {
   background: $dark;
 }
 .thumb-tooltip {
