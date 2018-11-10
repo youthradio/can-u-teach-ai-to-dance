@@ -8,6 +8,12 @@ export default {
     isLoading() {
       return this.$store.state.isLoading;
     },
+    isSafari() {
+      return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    },
+    videoExtension() {
+      return this.isSafari ? '.mp4' : '.gif';
+    }
   },
   methods: {
 

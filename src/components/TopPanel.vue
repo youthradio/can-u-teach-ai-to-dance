@@ -97,7 +97,7 @@ export default {
   methods: {
     backImageGif(score) {
       return {
-        "background-image": `url(data/gifs/${Math.floor(score)}.gif)`
+        "background-image": `url(data/gifs/${Math.floor(score)}${this.videoExtension})`
       };
     },
   },
