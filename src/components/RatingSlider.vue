@@ -8,7 +8,7 @@
           :style="numberStyle(num)"
           v-html="num"/>
       </div>
-      <div class="position-relative mt-3 text-center">
+      <div class="position-relative mt-4 text-center">
         <input
           v-model="sliderValue"
           type="range"
@@ -101,28 +101,31 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
   -webkit-appearance: none;
   background: $sky-blue;
-  height: 2.5rem;
-  width: 0.8rem;
-  margin-top: calc(-2.5rem/2);
-  border-radius: 99px;
+  height: 3.5rem;
+  width: 1.5rem;
+  margin-top: calc(-3.5rem/2);
+  border-radius: 50px;
+  border-width: 0px;
 }
 //firefox
 input[type=range]::-moz-range-thumb {
   cursor: pointer;
   background: $sky-blue;
-  height: 2.5rem;
-  width: 0.8rem;
-  margin-top: calc(-2.5rem/2);
-  border-radius: 99px;
+  height: 3.5rem;
+  width: 1.5rem;
+  margin-top: calc(-3.5rem/2);
+  border-radius: 50px;
+  border-width: 0px;
 }
 //ie
 input[type=range]::-ms-thumb {
   cursor: pointer;
   background: $sky-blue;
-  height: 2.5rem;
-  width: 0.8rem;
-  margin-top: calc(-2.5rem/2);
-  border-radius: 99px;
+  height: 3.5rem;
+  width: 1.5rem;
+  margin-top: calc(-3.5rem/2);
+  border-radius: 50px;
+  border-width: 0px;
 }
 
 input[type=range]::-webkit-slider-runnable-track {

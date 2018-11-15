@@ -1,7 +1,19 @@
 <template>
   <div
-    :style="!hasVoted? backImage: backImageGif(userRate)"
     class="text-center box">
+    <video
+      ref="videoPlayer"
+      :poster="backImage"
+      loop
+      muted
+      autoplay
+      class="fullscreen-bg__video">
+      <source
+        v-if="hasVoted"
+        ref="videoPlayerr"
+        :src="backImageGif"
+        type="video/mp4">
+    </video>
     <div class="progress-number numbers">
       <h3>{{ progress }}</h3>
     </div>
@@ -84,22 +96,19 @@ export default {
       }
     },
     backImage() {
-      return {
-        "background-image": `url(data/${this.songData.albumImageFile})`
-      };
+      return `data/${this.songData.albumImageFile}`;
+    },
+    backImageGif() {
+      return `data/gifs/${Math.floor(this.userRate)}.mp4`
     },
   },
   watch: {
+   backImageGif(){
+     this.$refs.videoPlayer.load()
+   },
     songData() {
       this.$refs.audioPlayer.player.media.load()
     }
-  },
-  methods: {
-    backImageGif(score) {
-      return {
-        "background-image": `url(data/gifs/${Math.floor(score)}${this.videoExtension})`
-      };
-    },
   },
 
 }
@@ -130,5 +139,13 @@ export default {
   background-position: center;
   padding-bottom: 100%;
   position: relative;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 </style>
