@@ -1,13 +1,15 @@
 <template>
   <div
-    :style="backImage"
     class="text-center box">
+    <div
+      v-if="!hasVoted || pageState > 0"
+      :style="backImage"
+      class="boxx"/>
     <video
       v-for="ngif in 11"
       ref="videoPlayer"
       :style="zIndex(ngif - 1)"
       :key="`video-${ngif}`"
-      :hidden="!hasVoted || pageState > 0"
       loop
       muted
       autoplay
@@ -122,7 +124,7 @@ export default {
       return `data/gifs/${id}.mp4`
     },
     zIndex(id) {
-      const z = (id === Math.floor(this.userRate) ? "1000" : "0");
+      const z = (id === Math.floor(this.userRate) ? "1000" : "-1000");
       return {
         "z-index": z
       }
@@ -160,6 +162,19 @@ export default {
   padding-bottom: 100%;
   position: relative;
   overflow: hidden;
+}
+
+.boxx {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1500;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-bottom: 100%;
 }
 .fullscreen-bg__video {
     position: absolute;
