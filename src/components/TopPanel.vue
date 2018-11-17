@@ -1,24 +1,26 @@
 <template>
   <div
+    :style="backImage"
     class="text-center box">
     <video
+      v-for="ngif in 11"
       ref="videoPlayer"
-      :poster="backImage"
+      :style="zIndex(ngif - 1)"
+      :key="`video-${ngif}`"
+      :hidden="!hasVoted"
       loop
       muted
       autoplay
+      playsinline
       class="fullscreen-bg__video">
       <source
-        v-if="hasVoted"
-        ref="videoPlayerr"
-        :src="backImageGif"
+        :src="backImageGif(ngif - 1)"
         type="video/mp4">
     </video>
     <div class="progress-number numbers">
       <h3>{{ progress }}</h3>
     </div>
     <vue-plyr
-      ref="audioPlayer"
       :options="playerOptions"
       class="overlay">
       <audio>
@@ -96,19 +98,29 @@ export default {
       }
     },
     backImage() {
-      return `data/${this.songData.albumImageFile}`;
+      return {
+        "background-image": `url(data/${this.songData.albumImageFile})`
+      };
     },
-    backImageGif() {
-      return `data/gifs/${Math.floor(this.userRate)}.mp4`
+    posterImage() {
+      return `data/${this.songData.albumImageFile}`
     },
   },
   watch: {
-   backImageGif(){
-     this.$refs.videoPlayer.load()
-   },
     songData() {
       this.$refs.audioPlayer.player.media.load()
     }
+  },
+  methods: {
+    backImageGif(id) {
+      return `data/gifs/${id}.mp4`
+    },
+    zIndex(id) {
+      const z = (id === Math.floor(this.userRate) ? "1000" : "0");
+      return {
+        "z-index": z
+      }
+    },
   },
 
 }
@@ -125,6 +137,7 @@ export default {
   position: absolute;
   bottom: 0px;
   left: 0px;
+  z-index: 2000;
 }
 .progress-number {
   position: absolute;
@@ -139,13 +152,14 @@ export default {
   background-position: center;
   padding-bottom: 100%;
   position: relative;
+  overflow: hidden;
 }
-
 .fullscreen-bg__video {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;
     height: 100%;
+    transform-origin: center;
+    transform: translateX(-50%);
 }
 </style>

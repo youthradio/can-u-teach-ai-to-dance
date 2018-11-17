@@ -9,8 +9,18 @@
       <div class="row">
         <div class="col-12 mx-auto">
           <div
-            :style="backImage"
-            class="text-center box"/>
+            class="text-center box">
+            <video
+              loop
+              muted
+              autoplay
+              playsinline
+              class="fullscreen-bg__video">
+              <source
+                :src="backImage"
+                type="video/mp4">
+            </video>
+          </div>
         </div>
       </div>
       <p>
@@ -83,9 +93,7 @@ export default {
        }
      },
      backImage() {
-       return {
-         "background-image": `url(data/score/${this.scorePage.gif})`
-       };
+       return `data/score/${this.scorePage.gif}.mp4`
      },
   },
   methods: {
@@ -112,5 +120,14 @@ export default {
   background-position: center;
   padding-bottom: 100%;
   position: relative;
+  overflow: hidden;
+}
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    transform-origin: center;
+    transform: translateX(-50%);
 }
 </style>

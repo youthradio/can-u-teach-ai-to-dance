@@ -2,8 +2,18 @@
   <div class="row">
     <div class="col-6">
       <div
-        :style="backImageGif(userRate)"
-        class="text-center box"/>
+        class="text-center box">
+        <video
+          loop
+          muted
+          autoplay
+          playsinline
+          class="fullscreen-bg__video">
+          <source
+            :src="backImageGif(userRate)"
+            type="video/mp4">
+        </video>
+      </div>
       <div class="d-flex justify-content-between numbers p-2">
         <span class="no-bold">You</span>
         <span>{{ userRate }}</span>
@@ -11,8 +21,18 @@
     </div>
     <div class="col-6">
       <div
-        :style="backImageGif(10*songData.danceability)"
-        class="text-center box"/>
+        class="text-center box">
+        <video
+          loop
+          muted
+          autoplay
+          playsinline
+          class="fullscreen-bg__video">
+          <source
+            :src="backImageGif(10*songData.danceability)"
+            type="video/mp4">
+        </video>
+      </div>
       <div class="d-flex justify-content-between numbers p-2">
         <span class="no-bold">Spotify</span>
         <span>{{ songData.danceability | formatNumber }}</span>
@@ -55,9 +75,7 @@ export default {
   },
   methods: {
     backImageGif(score) {
-      return {
-        "background-image": `url(data/gifs/${Math.floor(score)}.gif)`
-      };
+        return `data/gifs/${Math.floor(score)}.mp4`
     },
   },
 }
@@ -84,5 +102,14 @@ export default {
   background-position: center;
   padding-bottom: 100%;
   position: relative;
+  overflow: hidden;
+}
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    transform-origin: center;
+    transform: translateX(-50%);
 }
 </style>
