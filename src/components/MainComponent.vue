@@ -10,13 +10,16 @@
           <span class="song-title">{{ currentSongData.artistName }}</span>
         </h3>
       </div>
-      <template v-if="pageState === 0">
+      <template v-if="pageState < 3">
         <TopPanel
           :progress="getProgress"
           :song-data="currentSongData"
           :user-rate="sliderValue"
           :has-voted="hasVoted"
+          :page-state="pageState"
           class="my-4" />
+      </template>
+      <template v-if="pageState === 0">
         <div class="text-center my-4">
           <h4>Listen to the song and rate it here</h4>
         </div>

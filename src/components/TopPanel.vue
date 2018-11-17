@@ -7,7 +7,7 @@
       ref="videoPlayer"
       :style="zIndex(ngif - 1)"
       :key="`video-${ngif}`"
-      :hidden="!hasVoted"
+      :hidden="!hasVoted || pageState > 0"
       loop
       muted
       autoplay
@@ -21,6 +21,7 @@
       <h3>{{ progress }}</h3>
     </div>
     <vue-plyr
+      ref="audioPlayer"
       :options="playerOptions"
       class="overlay">
       <audio>
@@ -58,6 +59,11 @@ export default {
     hasVoted: {
       type: Boolean,
       default: false,
+      require: true,
+    },
+    pageState: {
+      type: Number,
+      default: 0,
       require: true,
     },
     progress: {
@@ -145,6 +151,7 @@ export default {
   right: 2%;
   color: $white;
   text-shadow: 1px 1px 1px $dark;
+  z-index: 2000;
 }
 .box {
   background-repeat: no-repeat;
