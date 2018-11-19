@@ -6,6 +6,11 @@
           <span class="song-title">{{ scorePage.title }}</span>
         </h3>
       </div>
+
+      <p>
+        {{ scorePage.description }}
+      </p>
+
       <div class="row">
         <div class="col-12 mx-auto">
           <div
@@ -23,9 +28,6 @@
           </div>
         </div>
       </div>
-      <p>
-        {{ scorePage.description }}
-      </p>
       <table class="table">
         <thead>
           <tr>

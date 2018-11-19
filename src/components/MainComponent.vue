@@ -17,7 +17,7 @@
           :user-rate="sliderValue"
           :has-voted="hasVoted"
           :page-state="pageState"
-          class="my-4" />
+          class="my-1" />
       </template>
       <template v-if="pageState === 0">
         <div class="text-center my-4">
@@ -27,25 +27,27 @@
           :show-helper="showHelper"
           class="my-4 mx-3"
           @hasChanged="sliderHasChanged" />
-        <template v-if="hasVoted">
-          <div class="float-right">
-            <div
-              class="d-flex align-items-center pointer"
-              @click="nextButton">
-              Compare with what's spotify think?
-              <div class="icon-arrow-right arrow pulse ml-3"/>
-            </div>
-          </div>
-        </template>
       </template>
-      <template v-else-if="pageState === 1 || pageState === 2">
+      <template v-if="hasVoted && pageState < 3">
         <ResultPanel
           :user-rate="sliderValue"
           :song-data="currentSongData"
-          class="my-4" />
+          :page-state="pageState"
+          class="my-1" />
+
+        <div
+          v-if="pageState === 0"
+          class="float-right mt-2">
+          <div
+            class="d-flex align-items-center pointer"
+            @click="nextButton">
+            Check what's Spotify thinks
+            <div class="icon-arrow-right arrow pulse ml-3"/>
+          </div>
+        </div>
         <div
           v-if="pageState === 1"
-          class="float-right">
+          class="float-right mt-2">
           <div
             class="d-flex align-items-center pointer"
             @click="nextButton">
@@ -54,7 +56,7 @@
           </div>
         </div>
         <div
-          v-else
+          v-if="pageState === 2"
           class="d-flex align-items-center justify-content-center">
           <button
             class="button-style text-uppercase font-weight-bold"
@@ -133,7 +135,7 @@ export default {
             this.pageState = 2
           }
           break;
-        case 1://compare
+        case 1://show spotify data / compare
           this.hasVoted = false
           this.currentSong++;
           this.pageState = 0

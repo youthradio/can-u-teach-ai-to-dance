@@ -1,37 +1,26 @@
 <template>
-  <div
-    class="text-center box">
-    <div
-      v-if="!hasVoted || pageState > 0"
-      :style="backImage"
-      class="boxx"/>
-    <video
-      v-for="ngif in 11"
-      ref="videoPlayer"
-      :style="zIndex(ngif - 1)"
-      :key="`video-${ngif}`"
-      loop
-      muted
-      autoplay
-      playsinline
-      class="fullscreen-bg__video">
-      <source
-        :src="backImageGif(ngif - 1)"
-        type="video/mp4">
-    </video>
-    <div class="progress-number numbers">
-      <h3>{{ progress }}</h3>
+  <div class="row">
+    <div :class="[hasVoted?'col-6':'col-12','mx-auto']">
+      <div
+        class="text-center box">
+        <div
+          :style="backImage"
+          class="boxx"/>
+        <div class="progress-number numbers">
+          <h3>{{ progress }}</h3>
+        </div>
+        <vue-plyr
+          ref="audioPlayer"
+          :options="playerOptions"
+          class="overlay">
+          <audio>
+            <source
+              :src="`data/${songData.trackFile}`"
+              type="audio/mp3">
+          </audio>
+        </vue-plyr>
+      </div>
     </div>
-    <vue-plyr
-      ref="audioPlayer"
-      :options="playerOptions"
-      class="overlay">
-      <audio>
-        <source
-          :src="`data/${songData.trackFile}`"
-          type="audio/mp3">
-      </audio>
-    </vue-plyr>
   </div>
 </template>
 
@@ -119,18 +108,6 @@ export default {
       this.$refs.audioPlayer.player.media.load()
     }
   },
-  methods: {
-    backImageGif(id) {
-      return `data/gifs/${id}.mp4`
-    },
-    zIndex(id) {
-      const z = (id === Math.floor(this.userRate) ? "1000" : "-1000");
-      return {
-        "z-index": z
-      }
-    },
-  },
-
 }
 </script>
 
@@ -176,12 +153,11 @@ export default {
   background-position: center;
   padding-bottom: 100%;
 }
-.fullscreen-bg__video {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    height: 100%;
-    transform-origin: center;
-    transform: translateX(-50%);
+.row > div {
+    -webkit-transition: all 0.6s ease-in-out;
+    -moz-transition: all 0.6s ease-in-out;
+    -o-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out;
+
 }
 </style>
