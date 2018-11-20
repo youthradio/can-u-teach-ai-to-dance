@@ -40,7 +40,7 @@
           <div
             class="d-flex align-items-center pointer"
             @click="nextButton">
-            Check what's Spotify thinks
+            Check Spotify rate
             <div class="icon-arrow-right arrow pulse ml-3"/>
           </div>
         </div>
@@ -178,7 +178,6 @@ export default {
     padding: .25rem .5rem;
     margin: 1rem;
     font-size: 1.5rem !important;
-    font-weight: 600;
     box-shadow: 0.5rem 0.5rem #00cec3;
 }
 </style>

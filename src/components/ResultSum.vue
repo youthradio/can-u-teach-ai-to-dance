@@ -11,8 +11,8 @@
         {{ scorePage.description }}
       </p>
 
-      <div class="row">
-        <div class="col-12 mx-auto">
+      <div class="row mb-3">
+        <div class="col-12 col-sm-8 mx-auto">
           <div
             class="text-center box">
             <video

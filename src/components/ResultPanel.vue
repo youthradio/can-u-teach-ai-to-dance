@@ -8,19 +8,18 @@
       <div
         class="text-center box">
         <video
-          v-for="ngif in 11"
+          v-for="(gif, i) in gifsState"
           ref="videoPlayer"
-          :style="zIndex(ngif - 1)"
-          :key="`video-${ngif}`"
+          :style="zIndex(i)"
+          :key="`video-${i}`"
           loop
           muted
           autoplay
           playsinline
           class="fullscreen-bg__video">
           <source
-            v-if="(ngif-1) === Math.floor(userRate)"
-            :key="`source-video-${ngif}`"
-            :src="backImageGif(ngif - 1)"
+            v-if="gif.enable"
+            :src="gif.url"
             type="video/mp4">
         </video>
       </div>
@@ -82,7 +81,7 @@ export default {
   data() {
     return {
       startData: "HELLO",
-      show: true,
+      gifsState: null,
     }
   },
   computed: {
@@ -91,21 +90,35 @@ export default {
         "background-image": `url(data/${this.songData.albumImageFile})`
       };
     },
+    userRateChange() {
+      return Math.floor(this.userRate);
+    },
     spotifyComputedRate() {
       return this.pageState === 0 ? '?' : this.$options.filters.formatNumber(this.songData.danceability);
     }
   },
   watch: {
+    userRateChange() {
+      this.gifsState[this.userRateChange].enable = true;
+    },
     pageState() {
       document.querySelectorAll('video').forEach(v=> v.play())
     }
+  },
+  created() {
+    this.gifsState = new Array(11).fill()
+      .map((e,i) => ({
+        enable: i > 0? false: true,
+        url: this.backImageGif(i)
+      })
+    )
   },
   methods: {
     backImageGif(score) {
         return `data/gifs/${Math.floor(score)}.mp4`
     },
     zIndex(id) {
-      const z = (id === Math.floor(this.userRate) ? "1000" : "-1000");
+      const z = (id === this.userRateChange ? "1000" : "-1000");
       return {
         "z-index": z
       }
