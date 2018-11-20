@@ -29,7 +29,7 @@
         <span class="no-bold">Spotify</span>
         <span>{{ spotifyComputedRate }}</span>
       </div>
-      <template v-if="pageState == 1">
+      <template v-if="pageState == 1 || pageState == 2">
         <div
           class="text-center box">
           <video
@@ -87,7 +87,7 @@ export default {
   computed: {
     backImage() {
       return {
-        "background-image": `url(data/${this.songData.albumImageFile})`
+        "background-image": 'url(' + require(`../assets/data/${this.songData.albumImageFile}`) + ')'
       };
     },
     userRateChange() {
@@ -115,7 +115,7 @@ export default {
   },
   methods: {
     backImageGif(score) {
-        return `data/gifs/${Math.floor(score)}.mp4`
+        return require(`../assets/data/gifs/${Math.floor(score)}.mp4`)
     },
     zIndex(id) {
       const z = (id === this.userRateChange ? "1000" : "-1000");

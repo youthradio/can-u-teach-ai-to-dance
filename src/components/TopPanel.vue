@@ -15,7 +15,7 @@
           class="overlay">
           <audio>
             <source
-              :src="`data/${songData.trackFile}`"
+              :src="require(`../assets/data/${songData.trackFile}`)"
               type="audio/mp3">
           </audio>
         </vue-plyr>
@@ -96,12 +96,9 @@ export default {
     },
     backImage() {
       return {
-        "background-image": `url(data/${this.songData.albumImageFile})`
+        "background-image": 'url(' + require(`../assets/data/${this.songData.albumImageFile}`) + ')'
       };
-    },
-    posterImage() {
-      return `data/${this.songData.albumImageFile}`
-    },
+    }
   },
   watch: {
     songData() {

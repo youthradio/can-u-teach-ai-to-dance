@@ -95,7 +95,7 @@ export default {
        }
      },
      backImage() {
-       return `data/score/${this.scorePage.gif}.mp4`
+       return require(`../assets/data/score/${this.scorePage.gif}.mp4`)
      },
   },
   methods: {
