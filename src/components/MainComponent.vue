@@ -34,7 +34,6 @@
           :song-data="currentSongData"
           :page-state="pageState"
           class="my-1" />
-
         <div
           v-if="pageState === 0"
           class="float-right mt-2">

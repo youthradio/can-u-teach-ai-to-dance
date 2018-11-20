@@ -3,10 +3,10 @@
     <div class="slidecontainer">
       <div class="d-flex no-wrap justify-content-between numbers">
         <div
-          v-for="num in values"
+          v-for="num in 11"
           :key="num"
-          :style="numberStyle(num)"
-          v-html="num"/>
+          :style="numberStyle(num - 1)"
+          v-html="num - 1"/>
       </div>
       <div class="position-relative mt-4 text-center">
         <input
@@ -51,7 +51,6 @@ export default {
     return {
       sliderValue: 0.0,
       hasCliked: false,
-      values: [0,1,2,3,4,5,6,7,8,9,10]
     }
   },
   computed: {

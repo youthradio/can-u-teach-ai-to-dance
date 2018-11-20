@@ -18,6 +18,7 @@
           playsinline
           class="fullscreen-bg__video">
           <source
+            v-if="(ngif-1) === Math.floor(userRate)"
             :key="`source-video-${ngif}`"
             :src="backImageGif(ngif - 1)"
             type="video/mp4">
