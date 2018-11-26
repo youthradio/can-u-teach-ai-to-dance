@@ -3,8 +3,11 @@
     <div class="col-12">
       <div class="text-center">
         <h3>
-          <span class="song-title">{{ scorePage.title }}</span>
+          So...Do you and Spotify dance to the same beat?
         </h3>
+        <h4>
+          <span class="song-title">{{ scorePage.title }}</span>
+        </h4>
       </div>
 
       <p>

@@ -4,7 +4,7 @@
       <div
         v-if="pageState < 3"
         class="text-center my-2">
-        <h3>How Dancible is
+        <h3>How danceable is
           <span class="song-title">{{ currentSongData.songName }}</span>
           by
           <span class="song-title">{{ currentSongData.artistName }}</span>
@@ -21,7 +21,7 @@
       </template>
       <template v-if="pageState === 0">
         <div class="text-center my-4">
-          <h4>Listen to the song and rate it here</h4>
+          <h4>Play the song and rate it</h4>
         </div>
         <RatingSlider
           :show-helper="showHelper"
@@ -40,7 +40,7 @@
           <div
             class="d-flex align-items-center pointer"
             @click="nextButton">
-            Check Spotify rate
+            Check Spotify's danceability score
             <div class="icon-arrow-right arrow pulse ml-3"/>
           </div>
         </div>
@@ -50,7 +50,7 @@
           <div
             class="d-flex align-items-center pointer"
             @click="nextButton">
-            Next Song
+            Next track
             <div class="icon-arrow-right arrow pulse ml-3"/>
           </div>
         </div>
@@ -59,7 +59,7 @@
           class="d-flex align-items-center justify-content-center">
           <button
             class="button-style text-uppercase font-weight-bold"
-            @click="nextButton">See Overall Results</button>
+            @click="nextButton">Results</button>
         </div>
       </template>
       <template v-else-if="pageState === 3">

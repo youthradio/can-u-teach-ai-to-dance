@@ -25,8 +25,8 @@
         </div>
       </div>
       <div class="d-flex justify-content-between mt-3">
-        <div>Hard to Dance</div>
-        <div>Easy to Dance</div>
+        <div>Um...No.</div>
+        <div>Go crazy!</div>
       </div>
     </div>
   </div>
