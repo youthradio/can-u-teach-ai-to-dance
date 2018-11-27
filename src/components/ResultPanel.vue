@@ -108,7 +108,7 @@ export default {
   created() {
     this.gifsState = new Array(11).fill()
       .map((e,i) => ({
-        enable: i > 0? false: true,
+        enable: i === this.userRateChange? true: false,
         url: this.backImageGif(i)
       })
     )
