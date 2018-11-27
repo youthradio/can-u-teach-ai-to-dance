@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div :class="[hasVoted?'col-6':'col-12','mx-auto']">
+    <div class="col-12 mx-auto">
       <div
         class="text-center box">
         <div
