@@ -6,7 +6,9 @@
           So...Do you and Spotify dance to the same beat?
         </h3>
         <h4>
-          <span class="song-title" v-html="scorePage.title"></span>
+          <span 
+            class="song-title" 
+            v-html="scorePage.title"/>
         </h4>
       </div>
 

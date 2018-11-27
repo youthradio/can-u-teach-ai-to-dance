@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { csvParse } from 'd3-dsv'
 
 Vue.use(Vuex)
 
