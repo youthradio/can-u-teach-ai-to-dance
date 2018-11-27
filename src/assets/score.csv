@@ -1,0 +1,4 @@
+scoreRange,title,description,gif,gif_url
+0-2.4,You and Spotify are dancing in the street!,Your taste closely aligns with Spotify's danceability algorithm. ,0.gif,https://media.giphy.com/media/5xtDarMesB1oibWtxQc/giphy.gif
+2.41- 4.80,You and Spotify vibe to <i>some</i> of the same songs.,But looks like you might step on each other's toes from time to time. ,1.gif,https://media.giphy.com/media/5bs2cJgnAw3xgLtv1n/giphy.gif
+4.81-10,You and Spotify are not even at the same party. ,"Algorithms are made by people, and like people, they don't account for everyone.",2.gif,https://media.giphy.com/media/FLze1pgnsmBMs/giphy.gif

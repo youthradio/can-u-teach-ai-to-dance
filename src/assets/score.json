@@ -1,0 +1,5 @@
+[
+{"scoreRange":"0-2.4","title":"You and Spotify are dancing in the street!","description":"Your taste closely aligns with Spotify's danceability algorithm.","gif":"0.gif","gif_url":"https://media.giphy.com/media/5xtDarMesB1oibWtxQc/giphy.gif"},
+{"scoreRange":"2.41- 4.80","title":"You and Spotify vibe to <i>some</i> of the same songs.","description":"But looks like you might step on each other's toes from time to time.","gif":"1.gif","gif_url":"https://media.giphy.com/media/5bs2cJgnAw3xgLtv1n/giphy.gif"},
+{"scoreRange":"4.81-10","title":"You and Spotify are not even at the same party.","description":"Algorithms are made by people, and like people, they don't account for everyone.","gif":"2.gif","gif_url":"https://media.giphy.com/media/FLze1pgnsmBMs/giphy.gif"}
+]

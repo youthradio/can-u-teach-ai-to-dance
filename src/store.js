@@ -19,9 +19,7 @@ const mutations = {
     state.isLoading = true;
     state.spotifyData = require('./assets/data.json');
     state.spotifyData.sort(() => 0.5 - Math.random()); //shuffle array
-    state.scoreData =  await fetch(`https://docs.google.com/spreadsheets/d/e/2PACX-1vTZDw_gJOKY1yHVXH7blg-xbsfJJVw-3wUzoUE5rv0tcwSuDWxmIjnvivVd6vRumReiKlOTJamj6TLA/pub?gid=578222043&single=true&output=csv`)
-    .then(res => res.text())
-    .then(res => csvParse(res));
+    state.scoreData =  require('./assets/score.json');
     state.isLoading = false;
   },
 }
