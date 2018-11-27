@@ -12,7 +12,9 @@
         <vue-plyr
           ref="audioPlayer"
           :options="playerOptions"
-          class="overlay">
+          :emit="['play']"
+          class="overlay"
+          @play="onAudioPlay">
           <audio>
             <source
               :src="require(`../assets/data/${songData.trackFile}`)"
@@ -65,7 +67,7 @@ export default {
   },
   data() {
     return {
-      startData: "HELLO"
+      playerVolume: 1.0
     }
   },
   computed: {
@@ -75,7 +77,7 @@ export default {
         iconUrl: process.env.BASE_URL + 'plyr.svg',
         'volume': 1,
         'fullscreen': false,
-        'loop': { active: true },
+        'loop': { active: false },
         controls:
         [
           // 'play-large', // The large play button in the center
@@ -101,9 +103,33 @@ export default {
     }
   },
   watch: {
+    playerVolume(){
+      this.$refs.audioPlayer.player.volume = this.playerVolume
+    },
     songData() {
-      this.$refs.audioPlayer.player.media.load()
+      this.fade("out");
     }
+  },
+  methods: {
+    onAudioPlay() {
+      this.playerVolume = 0.0
+      this.fade("in")
+    },
+    fade(mode) {
+      setTimeout(() => {
+        const inc = (mode === "out" ? -0.1 : 0.1);
+        this.playerVolume += inc
+        if(this.playerVolume > 0.0 && this.playerVolume  < 1.0) {
+          return this.fade(mode);
+        } else {
+          if(mode === "out"){
+            this.$refs.audioPlayer.player.media.load();
+          }
+          this.playerVolume = 1.0;
+          return
+        }
+      }, 100)
+   }
   },
 }
 </script>
