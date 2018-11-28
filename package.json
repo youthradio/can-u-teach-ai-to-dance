@@ -13,6 +13,7 @@
     "d3-dsv": "^1.0.10",
     "plyr": "^3.4.7",
     "resize-observer-polyfill": "^1.5.0",
+    "smoothscroll-polyfill": "^0.4.3",
     "vue": "^2.5.17",
     "vuex": "^3.0.1"
   },

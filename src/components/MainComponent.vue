@@ -1,6 +1,8 @@
 <template>
   <div class="row">
-    <div class="col-12 col-md-6 mx-auto">
+    <div
+      id="title-top"
+      class="col-12 col-md-6 mx-auto">
       <div
         v-if="pageState < 3"
         class="text-center my-2">
@@ -130,6 +132,12 @@ export default {
       this.hasVoted = true;
       this.showHelper = false;
     },
+    scrollTop() {
+      const el = this.$el.querySelector("#title-top")
+      el.scrollIntoViewIfNeeded({
+        block: 'start'
+      })
+    },
     nextButton() {
       switch(this.pageState){
         case 0: //start
@@ -143,15 +151,18 @@ export default {
           this.hasVoted = false
           this.currentSong++;
           this.pageState = 0
+          this.scrollTop()
           break;
-        case 2://results
+        case 2://see results
           this.pageState = 3;
+          this.scrollTop()
           break;
-        case 3://results
+        case 3://try again
           this.pageState = 0;
           this.currentSong = 0;
           this.hasVoted = false;
           this.userRates = [];
+          this.scrollTop()
           break;
       }
     },

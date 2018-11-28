@@ -1,6 +1,8 @@
+import smoothscroll from 'smoothscroll-polyfill'
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
+smoothscroll.polyfill()
 
 Vue.config.productionTip = false
 
