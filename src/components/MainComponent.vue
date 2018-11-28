@@ -40,7 +40,7 @@
           <div
             class="d-flex align-items-center pointer"
             @click="nextButton">
-            Check Spotify's danceability score
+            Compare to Spotify
             <div class="icon-arrow-right arrow pulse ml-3"/>
           </div>
         </div>
