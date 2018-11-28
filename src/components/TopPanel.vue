@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-12 mx-auto">
+    <div :class="[hasPlayed ?'col-6':'col-12','mx-auto']">
       <div
         class="text-center box">
         <div
@@ -67,7 +67,8 @@ export default {
   },
   data() {
     return {
-      playerVolume: 1.0
+      playerVolume: 1.0,
+      hasPlayed: false,
     }
   },
   computed: {
@@ -108,10 +109,12 @@ export default {
     },
     songData() {
       this.fade("out");
+      this.hasPlayed = false;
     }
   },
   methods: {
     onAudioPlay() {
+      this.hasPlayed = true;
       this.playerVolume = 0.0
       this.fade("in")
     },
@@ -128,7 +131,7 @@ export default {
           this.playerVolume = 1.0;
           return
         }
-      }, 100)
+      }, 50)
    }
   },
 }

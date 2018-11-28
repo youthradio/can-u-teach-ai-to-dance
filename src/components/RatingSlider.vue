@@ -8,7 +8,7 @@
           :style="numberStyle(num - 1)"
           v-html="num - 1"/>
       </div>
-      <div class="position-relative mt-4 text-center">
+      <div class="position-relative mt-3 text-center">
         <input
           v-model="sliderValue"
           type="range"
@@ -25,8 +25,8 @@
         </div>
       </div>
       <div class="d-flex justify-content-between mt-3">
-        <div>Um...No.</div>
-        <div>Go crazy!</div>
+        <div class="level-name">Um...No.</div>
+        <div class="level-name">Go crazy!</div>
       </div>
     </div>
   </div>
@@ -70,7 +70,7 @@ export default {
       this.hasCliked = true;
     },
     numberStyle (value){
-      const v = 1 + 2*Math.exp(-2*Math.abs(this.sliderValue - value))
+      const v = 1 + 1*Math.exp(-2*Math.abs(this.sliderValue - value))
       return {
         transform: `scale(${v})`,
       }
@@ -158,5 +158,8 @@ input[type=range]:focus::-ms-fill-upper {
   top: -1px;
   left: 5%;
   color: $red;
+}
+.level-name {
+  font-weight: 600;
 }
 </style>

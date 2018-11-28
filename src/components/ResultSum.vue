@@ -6,18 +6,11 @@
           So...Do you and Spotify dance to the same beat?
         </h3>
         <h4>
-          <span 
-            class="song-title" 
-            v-html="scorePage.title"/>
+          <span v-html="scorePage.title"/>
         </h4>
       </div>
-
-      <p>
-        {{ scorePage.description }}
-      </p>
-
       <div class="row mb-3">
-        <div class="col-12 col-sm-8 mx-auto">
+        <div class="col-8 col-sm-11 mx-auto">
           <div
             class="text-center box">
             <video
@@ -33,6 +26,9 @@
           </div>
         </div>
       </div>
+      <p>
+        {{ scorePage.description }}
+      </p>
       <table class="table">
         <thead>
           <tr>
@@ -136,5 +132,11 @@ export default {
     height: 100%;
     transform-origin: center;
     transform: translateX(-50%);
+}
+h3 {
+  font-weight: 800;
+}
+table {
+  font-size: 0.8rem;
 }
 </style>

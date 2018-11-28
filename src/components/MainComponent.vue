@@ -20,9 +20,13 @@
           class="my-1" />
       </template>
       <template v-if="pageState === 0">
-        <div class="text-center my-4">
-          <h4>Play the song and rate it</h4>
-        </div>
+        <transition name="fade">
+          <template v-if="!hasVoted">
+            <div class="text-center">
+              <h4>Play the song and rate it</h4>
+            </div>
+          </template>
+        </transition>
         <RatingSlider
           :show-helper="showHelper"
           class="my-4 mx-3"
@@ -32,13 +36,12 @@
         <ResultPanel
           :user-rate="sliderValue"
           :song-data="currentSongData"
-          :page-state="pageState"
-          class="my-1" />
+          :page-state="pageState"/>
         <div
           v-if="pageState === 0"
-          class="float-right mt-2">
+          class="float-right">
           <div
-            class="d-flex align-items-center pointer"
+            class="button-next d-flex align-items-center pointer"
             @click="nextButton">
             Compare to Spotify
             <div class="icon-arrow-right arrow pulse ml-3"/>
@@ -46,9 +49,9 @@
         </div>
         <div
           v-if="pageState === 1"
-          class="float-right mt-2">
+          class="float-right">
           <div
-            class="d-flex align-items-center pointer"
+            class="button-next d-flex align-items-center pointer"
             @click="nextButton">
             Next track
             <div class="icon-arrow-right arrow pulse ml-3"/>
@@ -56,22 +59,24 @@
         </div>
         <div
           v-if="pageState === 2"
-          class="d-flex align-items-center justify-content-center">
-          <button
-            class="button-style text-uppercase font-weight-bold"
-            @click="nextButton">Results</button>
+          class="float-right">
+          <div
+            class="button-next d-flex align-items-center pointer"
+            @click="nextButton">
+            Results
+            <div class="icon-arrow-right arrow pulse ml-3"/>
+          </div>
         </div>
       </template>
       <template v-else-if="pageState === 3">
         <ResultSum
           :user-rates="userRates"
-          :songs-data="spotifyData"
-          class="my-4" />
+          :songs-data="spotifyData"/>
         <div class="float-left">
           <div
-            class="d-flex align-items-center pointer"
+            class="button-next d-flex align-items-center pointer"
             @click="nextButton">
-            <div class="icon-arrow-left arrow pulse-left ml-3"/>
+            <div class="icon-arrow-left arrow pulse-left mx-1"/>
             Try Again
           </div>
         </div>
@@ -105,7 +110,7 @@ export default {
       hasVoted: false,
       sliderValue: 0,
       userRates: [],
-      showHelper: true,
+      showHelper: false,
     }
   },
   computed: {
@@ -160,24 +165,27 @@ export default {
 
 .arrow {
     color: $sky-blue;
-    font-size: 2rem;
 }
 .song-title {
     font-weight: 800;
     color: $green;
 }
-.button-style:hover {
-    color: #fff;
-    background-color: #00cec3;
-    box-shadow: 5px 5px #232323;
+.button-next {
+  background-color: #fff;
+  border: 0.15rem solid $dark;
+  border-radius: 10px;
+  padding: .5rem .5rem;
+  margin: 1rem;
+  font-size: 1rem !important;
+  box-shadow: 0.25rem 0.25rem #00cec3;
 }
-.button-style {
-    background-color: #fff;
-    border: 3px solid #2e2e2e;
-    border-radius: 10px;
-    padding: .25rem .5rem;
-    margin: 1rem;
-    font-size: 1.5rem !important;
-    box-shadow: 0.5rem 0.5rem #00cec3;
+.button-next:hover {
+    box-shadow: 0.1rem 0.1rem $dark;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: all .2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0.0;
 }
 </style>
