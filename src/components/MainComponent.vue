@@ -34,11 +34,15 @@
           class="my-4 mx-3"
           @hasChanged="sliderHasChanged" />
       </template>
+      <keep-alive>
+        <template v-if="hasVoted && pageState < 3">
+          <ResultPanel
+            :user-rate="sliderValue"
+            :song-data="currentSongData"
+            :page-state="pageState"/>
+        </template>
+      </keep-alive>
       <template v-if="hasVoted && pageState < 3">
-        <ResultPanel
-          :user-rate="sliderValue"
-          :song-data="currentSongData"
-          :page-state="pageState"/>
         <div
           v-if="pageState === 0"
           class="float-right">
@@ -70,7 +74,7 @@
           </div>
         </div>
       </template>
-      <template v-else-if="pageState === 3">
+      <template v-if="pageState === 3">
         <ResultSum
           :user-rates="userRates"
           :songs-data="spotifyData"/>
