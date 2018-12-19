@@ -3,11 +3,15 @@
     <div class="col-12 text-center">
       <h3>How danceable is
 
-        <a :href="songData.spotifyTrackURL" target="_blank">
+        <a 
+          :href="songData.spotifyTrackURL" 
+          target="_blank">
           <span class="song-title">{{ songData.songName }}</span>
         </a>
         by
-        <a :href="songData.spotifyArtistURL" target="_blank">
+        <a 
+          :href="songData.spotifyArtistURL" 
+          target="_blank">
           <span class="song-title">{{ songData.artistName }}</span>
         </a>
       </h3>
