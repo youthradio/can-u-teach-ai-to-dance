@@ -16,6 +16,9 @@ $plyr-control-radius: 5px !default;
   border: 2px $dark solid !important;
   box-shadow: 3px 3px black;
 }
-
+.plyr {
+  min-width: auto !important;
+}
 $plyr-audio-controls-bg: none;
+$plyr-control-spacing: 0px;
 @import "../../node_modules/plyr/src/sass/plyr";

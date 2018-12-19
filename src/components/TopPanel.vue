@@ -1,14 +1,25 @@
 <template>
   <div class="row">
+    <div class="col-12 text-center">
+      <h3>How danceable is
+
+        <a :href="songData.spotifyTrackURL" target="_blank">
+          <span class="song-title">{{ songData.songName }}</span>
+        </a>
+        by
+        <a :href="songData.spotifyArtistURL" target="_blank">
+          <span class="song-title">{{ songData.artistName }}</span>
+        </a>
+      </h3>
+    </div>
     <div :class="[hasPlayed ?'col-6':'col-12','mx-auto']">
       <div
         class="text-center box">
         <div
           :style="backImage"
           class="boxx"/>
-        <div class="progress-number numbers">
-          <h3>{{ progress }}</h3>
-        </div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center mt-1">
         <vue-plyr
           ref="audioPlayer"
           :options="playerOptions"
@@ -21,6 +32,14 @@
               type="audio/mp3">
           </audio>
         </vue-plyr>
+        <transition name="fade">
+          <template v-if="!hasPlayed && !hasVoted">
+            <h4>Play the song and rate it</h4>
+          </template>
+          <template v-else>
+            <div class="progress-number numbers"> {{ progress }}</div>
+          </template>
+        </transition>
       </div>
     </div>
   </div>
@@ -145,17 +164,11 @@ export default {
     width: 100%;
 }
 .overlay{
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
   z-index: 2000;
 }
 .progress-number {
-  position: absolute;
-  top: 2%;
-  right: 2%;
-  color: $white;
-  text-shadow: 1px 1px 1px $dark;
+  color: $dark;
+  // text-shadow: 1px 1px 1px $dark;
   z-index: 2000;
 }
 .box {
@@ -185,5 +198,19 @@ export default {
     -o-transition: all 0.6s ease-in-out;
     transition: all 0.6s ease-in-out;
 
+}
+.song-title {
+    font-weight: 800;
+    color: $green;
+}
+.numbers h3 {
+  font-size: 1.0rem !important;
+  text-transform: uppercase;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: all .2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0.0;
 }
 </style>
